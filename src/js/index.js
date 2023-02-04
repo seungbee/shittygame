@@ -177,6 +177,20 @@ if (isD){
     X += speed
 }
 
+if (X < 0) {
+    X = 0
+}
+if (X > 960 - 10) {
+    X = 960 - 10
+}
+if (Y < 0) {
+    Y = 0
+}
+if (Y > 540 - 10) {
+    Y = 540 - 10
+}
+
+
 if (gunCool == 0) {
     if (isUP && !UPCool){
         bullets.push([X+5/2, Y+5/2, 0, -bulletSpeed])
