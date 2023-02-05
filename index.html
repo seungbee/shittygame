@@ -4,15 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shitty game v0.00002</title>
+    <title>shitty game v0.00003</title>
     <style type="text/css">
         canvas { border: 1px solid black; }
+        div {
+            display: none;
+        }
     </style>
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
     <canvas id="canvas" width="960" height="540"></canvas>
     <h1 id="timer"></h1>
+
+    <div id="div">
+        <input id="input" maxlength="10" placeholder="your name! (max: 10)">
+        <button onclick="button()">upload!</button>
+    
+        <p>
+            <a href="https://docs.google.com/spreadsheets/d/11FURI_Sk15hOMNhMOcEj6Oqgo515yvz0VGUS22y4JEo/edit?usp=sharing" target="_blank">
+                ranking page =>
+            </a>
+        </p>
+    </div>
+    
+
     <script src="src/js/index.js"></script>
 </body>
 </html>

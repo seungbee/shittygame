@@ -4,6 +4,10 @@ let ctx = canvas.getContext("2d")
 
 let timer_elem = document.getElementById("timer")
 
+let input = document.getElementById("input")
+
+let div = document.getElementById("div")
+
 let howtoImg = new Image()
 let diedImg = new Image()
 
@@ -40,8 +44,11 @@ document.addEventListener("keydown", (e) => {
             break
         
         case 32:
-            Reset()
-            scene = 1
+            if(document.activeElement !== input) {
+                Reset()
+                scene = 1
+            }
+            
             break
 
     }
@@ -163,6 +170,9 @@ function Reset() {
     mobs = []
 }
 function Scene1() {
+//랭크 올리기 숨기기
+div.style.display = 'none'
+
 //메인 캐릭터 이동
 if (isW){
     Y -= speed
@@ -434,6 +444,27 @@ timer += 1
 timer_elem.innerHTML = timer/100 + "s"
 }
 
+//죽은 장면
 function Scene2() {
+    //랭크 올리기 표시
+    div.style.display = 'flex'
     ctx.drawImage(diedImg, 0, 0, 960, 540)
+}
+
+function button() {
+    if (input.value !== "") {
+        postRank(timer/100, input.value)
+    }
+    
+}
+function postRank(time, name) {
+    let url = 'https://script.google.com/macros/s/AKfycbw-HGttQ7Bgs1I6_dY2VHR_4FPz4Y7oHDB0Kd2Ly5VEtcrty23uow6VglTGovjEe9Xo/exec?'
+
+    fetch(url + new URLSearchParams({
+        time: time,
+        name: name,
+    }), {
+            mode: 'no-cors'
+    })
+
 }
