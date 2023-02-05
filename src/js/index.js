@@ -6,7 +6,8 @@ let timer_elem = document.getElementById("timer")
 
 let input = document.getElementById("input")
 
-let div = document.getElementById("div")
+let ranking = document.getElementById("ranking")
+let patchnote = document.getElementById("patchnote")
 
 let howtoImg = new Image()
 let diedImg = new Image()
@@ -151,6 +152,8 @@ setInterval(() => {
 
 //함수
 function Scene0() {
+    //패치노트 링크 보이기
+    patchnote.style.display = 'block'
     ctx.drawImage(howtoImg, 0, 0, 960, 540)
 }
 
@@ -171,7 +174,9 @@ function Reset() {
 }
 function Scene1() {
 //랭크 올리기 숨기기
-div.style.display = 'none'
+ranking.style.display = 'none'
+//패치노트 링크 가리기
+patchnote.style.display = 'none'
 
 //메인 캐릭터 이동
 if (isW){
@@ -447,7 +452,9 @@ timer_elem.innerHTML = timer/100 + "s"
 //죽은 장면
 function Scene2() {
     //랭크 올리기 표시
-    div.style.display = 'flex'
+    ranking.style.display = 'flex'
+    //패치노트 링크 가리기
+    patchnote.style.display = 'none'
     ctx.drawImage(diedImg, 0, 0, 960, 540)
 }
 

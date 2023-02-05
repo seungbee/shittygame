@@ -7,7 +7,7 @@
     <title>shitty game v0.00003</title>
     <style type="text/css">
         canvas { border: 1px solid black; }
-        div {
+        #ranking {
             display: none;
         }
     </style>
@@ -25,7 +25,14 @@
     <canvas id="canvas" width="960" height="540"></canvas>
     <h1 id="timer"></h1>
 
-    <div id="div">
+    <div id="patchnote">
+        <p>
+            <a href="https://github.com/seungbee/shittygame#readme">
+                patch note =>
+            </a>
+        </p>
+    </div>
+    <div id="ranking">
         <input id="input" maxlength="10" placeholder="your name! (max: 10)">
         <button onclick="button()">upload!</button>
     
