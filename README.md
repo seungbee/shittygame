@@ -1,4 +1,4 @@
-# **_shitty game v0.00002_**
+# **_shitty game v0.00003_**
 
 ## _how to play_
 
@@ -33,3 +33,9 @@
 - added red zone
 - added favicon
 - added patch note
+
+<br><br><br>
+
+**v0.00003**
+- added RANKING SYSTEM!!!!!!
+- (Records detected as cheating may be deleted)
