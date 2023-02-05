@@ -246,12 +246,27 @@ bullets.forEach((bullet, index) => {
     }
 
     mobs.forEach ((mob, index) => {
-        if (bullet[0] + 5 >= mob[0] && bullet[0] <= mob[0] + 15 &&
-            bullet[1] + 5 >= mob[1] && bullet[1] <= mob[1] + 15
-            ) {
-                mob[3] -= 1
-                bullets.splice(index, 1)
+        switch(mob[4]) {
+            case 1:{
+                if (bullet[0] + 5 >= mob[0] && bullet[0] <= mob[0] + 15 &&
+                    bullet[1] + 5 >= mob[1] && bullet[1] <= mob[1] + 15
+                    ) {
+                        mob[3] -= 1
+                        bullets.splice(index, 1)
+                }
+                break
+            }
+            case 2:{
+                if (bullet[0] + 5 >= mob[0] && bullet[0] <= mob[0] + 15 &&
+                    bullet[1] + 5 >= mob[1] && bullet[1] <= mob[1] + 15
+                    ) {
+                        mob[3] -= 1
+                        bullets.splice(index, 1)
+                }
+                break
+            }
         }
+        
     })
 })
 
@@ -259,19 +274,69 @@ bullets.forEach((bullet, index) => {
 //적 [X, Y, speed, health, type]  
 mobs.forEach((mob, index) => {
 
-    if (X - mob[0] != 0 && Y - mob[1] != 0) {
-        let angle = Math.atan2(Y - mob[1], X - mob[0])
-        mob[0] += Math.cos(angle) * mob[2]
-        mob[1] += Math.sin(angle) * mob[2]
+    switch(mob[4]) {
+        case 1: {
+            if (X - mob[0] != 0 && Y - mob[1] != 0) {
+                let angle = Math.atan2(Y - mob[1], X - mob[0])
+                mob[0] += Math.cos(angle) * mob[2]
+                mob[1] += Math.sin(angle) * mob[2]
+            }
+            if (X + 10 >= mob[0] && X <= mob[0] + 15 &&
+                Y + 10 >= mob[1] && Y <= mob[1] + 15) {
+                scene = 2
+            }
+            
+            if (mob[3] <= 0) {
+                mobs.splice(index, 1)
+            }
+            break
+        }
+        case 2: {
+            if (X - mob[0] != 0 && Y - mob[1] != 0) {
+                let angle = Math.atan2(Y - mob[1], X - mob[0])
+                mob[0] += Math.cos(angle) * mob[2]
+                mob[1] += Math.sin(angle) * mob[2]
+            }
+            if (X + 10 >= mob[0] && X <= mob[0] + 15 &&
+                Y + 10 >= mob[1] && Y <= mob[1] + 15) {
+                scene = 2
+            }
+            
+            if (mob[3] <= 0) {
+                mobs.splice(index, 1)
+            }
+            break
+        }
+        case 3: {
+            if (X - mob[0] != 0 && Y - mob[1] != 0) {
+                mob[1] += mob[2]
+            }
+            if (X + 10 >= mob[0] && X <= mob[0] + 300 &&
+                Y + 10 >= mob[1] && Y <= mob[1] + 300) {
+                scene = 2
+            }
+            
+            if (mob[3] <= 0 || mob[1] > 540 || mob[1] < -300) {
+                mobs.splice(index, 1)
+            }
+            break
+        }
+        case 4: {
+            if (X - mob[0] != 0 && Y - mob[1] != 0) {
+                mob[0] += mob[2]
+            }
+            if (X + 10 >= mob[0] && X <= mob[0] + 300 &&
+                Y + 10 >= mob[1] && Y <= mob[1] + 300) {
+                scene = 2
+            }
+            
+            if (mob[3] <= 0 || mob[0] > 960 || mob[0] < -300) {
+                mobs.splice(index, 1)
+            }
+            break
+        }
     }
-    if (X + 10 >= mob[0] && X <= mob[0] + 15 &&
-        Y + 10 >= mob[1] && Y <= mob[1] + 15) {
-        scene = 2
-    }
-    
-    if (mob[3] <= 0) {
-        mobs.splice(index, 1)
-    }  
+      
 })
 
 //적 생성
@@ -292,8 +357,7 @@ if (timer % 50 == 0){
                 break
         }
 }
-if (timer % 100 == 0) {
-    if (timer > 1500) {
+if (timer % 100 == 0 && timer > 1500) {
         let wall = Math.floor(Math.random()*4)
         switch(wall) {
             case 0:
@@ -309,6 +373,23 @@ if (timer % 100 == 0) {
                 mobs.push([975, Math.random() * 540, 2, 1, 2])
                 break
         }
+}
+
+if (timer % 1000 == 0 && timer > 3000) {
+    let wall = Math.floor(Math.random()*4)
+    switch(wall) {
+        case 0:
+            mobs.push([Math.random() * (960-300), -300, 1, 20, 3])
+            break
+        case 1:
+            mobs.push([Math.random() * (960-300), 540, -1, 20, 3])
+            break
+        case 2:
+            mobs.push([-300, Math.random() * (540-300), 1, 20, 4])
+            break
+        case 3:
+            mobs.push([960, Math.random() * (540-300), -1, 20, 4])
+            break
     }
 }
 
@@ -335,6 +416,14 @@ mobs.forEach((mob) => {
         case 2:
             ctx.fillStyle = "rgb(150,0,0)"
             ctx.fillRect(mob[0], mob[1], 15, 15)
+            break
+        case 3:
+            ctx.fillStyle = "rgba(255, 0, 0, 0.5)"
+            ctx.fillRect(mob[0], mob[1], 300, 300)
+            break
+        case 4:
+            ctx.fillStyle = "rgba(255, 0, 0, 0.5)"
+            ctx.fillRect(mob[0], mob[1], 300, 300)
             break
     }
     
