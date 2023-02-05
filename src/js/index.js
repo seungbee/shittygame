@@ -260,7 +260,7 @@ bullets.forEach((bullet, index) => {
         bullets.splice(index, 1)
     }
 
-    mobs.forEach ((mob, index) => {
+    mobs.forEach ((mob, index_) => {
         switch(mob[4]) {
             case 1:{
                 if (bullet[0] + 5 >= mob[0] && bullet[0] <= mob[0] + 15 &&
