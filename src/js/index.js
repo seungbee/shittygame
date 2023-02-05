@@ -299,6 +299,8 @@ mobs.forEach((mob, index) => {
             if (X + 10 >= mob[0] && X <= mob[0] + 15 &&
                 Y + 10 >= mob[1] && Y <= mob[1] + 15) {
                 scene = 2
+                //랭크 올리기 표시
+                ranking.style.display = 'flex'
             }
             
             if (mob[3] <= 0) {
@@ -315,6 +317,8 @@ mobs.forEach((mob, index) => {
             if (X + 10 >= mob[0] && X <= mob[0] + 15 &&
                 Y + 10 >= mob[1] && Y <= mob[1] + 15) {
                 scene = 2
+                //랭크 올리기 표시
+                ranking.style.display = 'flex'
             }
             
             if (mob[3] <= 0) {
@@ -329,6 +333,8 @@ mobs.forEach((mob, index) => {
             if (X + 10 >= mob[0] && X <= mob[0] + 300 &&
                 Y + 10 >= mob[1] && Y <= mob[1] + 300) {
                 scene = 2
+                //랭크 올리기 표시
+                ranking.style.display = 'flex'
             }
             
             if (mob[3] <= 0 || mob[1] > 540 || mob[1] < -300) {
@@ -343,6 +349,8 @@ mobs.forEach((mob, index) => {
             if (X + 10 >= mob[0] && X <= mob[0] + 300 &&
                 Y + 10 >= mob[1] && Y <= mob[1] + 300) {
                 scene = 2
+                //랭크 올리기 표시
+                ranking.style.display = 'flex'
             }
             
             if (mob[3] <= 0 || mob[0] > 960 || mob[0] < -300) {
@@ -451,8 +459,6 @@ timer_elem.innerHTML = timer/100 + "s"
 
 //죽은 장면
 function Scene2() {
-    //랭크 올리기 표시
-    ranking.style.display = 'flex'
     //패치노트 링크 가리기
     patchnote.style.display = 'none'
     ctx.drawImage(diedImg, 0, 0, 960, 540)
@@ -461,6 +467,8 @@ function Scene2() {
 function button() {
     if (input.value !== "") {
         postRank(timer/100, input.value)
+        //랭크 올리기 숨기기
+        ranking.style.display = 'none'
     }
     
 }
