@@ -7,7 +7,7 @@
 - Restart: space key
 <br><br>
 
-Enemies:
+### _Enemies_
 - red:
     - speed: slow (1)
     - health: 3
